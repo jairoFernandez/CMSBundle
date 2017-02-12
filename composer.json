@@ -1,0 +1,22 @@
+{
+    "name": "tucompu/cms-bundle",
+    "description": "A very simple, simple CMS",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jairo Fernández",
+            "email": "jairog12@outlook.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require" : {
+        "php": ">=5.4",
+        "symfony/framework-bundle": ">=2.2",
+        "symfony/symfony": ">=2.2"
+    },
+    "autoload" : {
+        "psr-4" : {
+            "Tucompu\\CmsBundle\\" : ""
+        }
+    }
+}
