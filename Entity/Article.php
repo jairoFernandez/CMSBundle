@@ -1,6 +1,6 @@
 <?php
 
-namespace Tucompu\Model;
+namespace Tucompu\CmsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -10,10 +10,10 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  * Article
  *
  * @ORM\Table(name="WEB_Article")
- * @ORM\Entity(repositoryClass="AppBundle\Entity\ArticleRepository")
+ * @ORM\Entity(repositoryClass="CmsBundle\Entity\ArticleRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-abstract class Article
+class Article
 {
     /**
      * @var integer
@@ -51,6 +51,17 @@ abstract class Article
      * @ORM\Column(name="isActive", type="boolean")
      */
     private $isActive;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ArticleTranslations", mappedBy="article", cascade={"persist","remove"})
+     * @Assert\Valid()
+     */
+    private $translations;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Category")
+     */
+    private $category;
 
     /**
      * @ORM\Column(name="slug", type="string", length=255, nullable=true)
@@ -194,6 +205,7 @@ abstract class Article
         $this->translations = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+   
     /**
      * Set slug
      *
@@ -284,7 +296,7 @@ abstract class Article
         // la ruta absoluta del directorio donde se deben
         // guardar los archivos cargados
         $uploadDir = __DIR__.'/../../../web/'.$this->getUploadDir();
-        // var_dump($uploadDir);
+       // var_dump($uploadDir);
         return $uploadDir;
     }
 
