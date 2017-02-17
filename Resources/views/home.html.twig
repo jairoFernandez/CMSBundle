@@ -1,0 +1,85 @@
+{% extends '::Http/school/layout.html.twig' %}
+
+{% block banner %}
+    <div class="simple-slider">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                {% if banners != null %}
+                    {% for banner in banners %}
+                        <div class="swiper-slide" style="background-image:url({{ asset(banner.getWebPath) }});"></div>
+                    {% endfor %}
+                {% else %}
+                    <div class="swiper-slide" style="background-image:url(https://placeholdit.imgix.net/~text?txtsize=68&amp;txt=Bienvenidos+cambia+tu+imagen&amp;w=1920&amp;h=500);"></div>
+                    <div class="swiper-slide" style="background-image:url(https://placeholdit.imgix.net/~text?txtsize=68&amp;txt=Gracias+por+visitarnos&amp;w=1920&amp;h=500);"></div>
+                {% endif %}
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">{{ 'Latest Articles'|trans }}</h2>
+                <p class="text-center">{{ 'This is the top articles'|trans }} </p>
+            </div>
+            <div class="container">
+                <div class="row articles">
+
+                    {% for article in articles %}
+                        {% set contador = 0 %}
+
+                        {% for translation in article.translations %}
+                            {% if app.request.locale == translation.language.code %}
+                                <div class="col-md-4 col-sm-6 item">
+                                    <a href="{{ path('pageDetail', { 'slug': article.slug }) }}">
+                                        {% if article.path != null and article.path != ""  %}
+                                            <img src="{{ asset(article.getWebPath) }}" class="img-responsive" />
+                                        {% else %}
+                                            <img class="img-responsive"
+                                                    src="{{ asset('template-school/assets/img/desk.jpg') }}"/>
+                                        {% endif %}
+                                    </a>
+                                    <h3 class="name">{{ translation.title }}</h3>
+                                    <p class="description">
+                                        {{ translation.shortDescription }}
+                                    </p>
+                                    <a href="{{ path('pageDetail', { 'slug': article.slug }) }}" class="btn btn-success"><i
+                                                class="glyphicon glyphicon-circle-arrow-right"></i> {{ 'Read more'|trans }}</a><p></p></div>
+                                {% set contador = contador + 1 %}
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if contador == 0 %}
+                            {% for translation in article.translations %}
+                                {% if loop.first %}
+                                    <div class="col-md-4 col-sm-6 item">
+                                        <a href="{{ path('pageDetail', { 'slug': article.slug }) }}">
+                                            {% if article.path != null and article.path != ""  %}
+                                                <img src="{{ asset(article.getWebPath) }}" class="img-responsive" />
+                                            {% else %}
+                                                <img class="img-responsive"
+                                                     src="{{ asset('template-school/assets/img/desk.jpg') }}"/>
+                                            {% endif %}
+                                        </a>
+                                        <h3 class="name">{{ article.title }}</h3>
+                                        <p class="description">
+                                            {{ translation.shortDescription }}
+                                        </p>
+                                        <a href="{{ path('pageDetail', { 'slug': article.slug }) }}" class="btn btn-success"><i
+                                                    class="glyphicon glyphicon-circle-arrow-right"></i> {{ 'Read more'|trans }}</a><p></p></div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}

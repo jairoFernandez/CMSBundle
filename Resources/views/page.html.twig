@@ -1,0 +1,26 @@
+{% extends '::Http/school/layout.html.twig' %}
+{% block banner %}
+
+{% endblock %}
+{% block body %}
+    {% if article != null %}
+    <div class="col-md-6 post-title">
+        <h1>{{ article.title }}</h1>
+        <p class="author"><strong>{{ 'Category'|trans }}: {% for category in article.article.category %} {{ category }}, {% endfor %}</strong>
+            </p>
+        <p><span class="text-muted">{{ article.modifiedAt|date('d, M-Y') }} </span></p>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('admin_article-trans_edit', { 'id': article.id }) }}" class="btn btn-warning"><i class="fa fa-edit"></i> {{ 'Editar'|trans }}</a>
+            <br>
+        {% endif %}
+        {% if article.article.path != null and article.article.path != ""  %}
+            <img src="{{ asset(article.article.getWebPath) }}" class="img-responsive" style="width: 30%; margin-top: 5px; float: right" />
+        {% endif %}
+    </div>
+    <div class="col-md-6 col-md-offset-0 post-body">
+        <p>
+            {{ article.content|raw }}
+        </p>
+    </div>
+    {% endif %}
+{% endblock %}
