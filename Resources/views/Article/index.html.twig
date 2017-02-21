@@ -1,0 +1,43 @@
+{% extends 'CmsBundle::layout.html.twig' %}
+
+{% block body %}
+    <h1>{{ 'Articles'|trans }} {{ 'list'|trans }}</h1>
+    <hr>
+    <a href="{{ path('admin_article_new') }}" class="btn btn-success btn-sm">
+        {{ 'Create'|trans }}
+    </a>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>{{ 'Title'|trans }}</th>
+                <th>{{ 'Url'|trans }}</th>
+                <th>{{ 'Status'|trans }}</th>
+                <th>{{ 'Slug'|trans }}</th>
+                <th>{{ 'Actions'|trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('admin_article_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.title }}</td>
+                <td><a href="{{ path('pageDetail', { 'slug': entity.slug }) }}" target="_blank" class="action"><i
+                                class="fa fa-book"></i>{{ path('pageDetail', { 'slug': entity.slug }) }}</a></td>
+               <td> {% if entity.isActive == true %}
+                        <i  title="Activo" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>
+                    {% else %}
+                        <span>{{ 'Inactivo'|trans }}</span>
+                    {% endif %}</td>
+                <td>{{ entity.slug }}</td>
+                <td>
+                    <a href="{{ path('admin_article_show', { 'id': entity.id }) }}"  class="btn btn-success btn-sx">{{ 'Ver'|trans }}</a>
+                    <a href="{{ path('admin_article_edit', { 'id': entity.id }) }}"  class="btn btn-info btn-sx">{{ 'Editar'|trans }}</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    {% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'TemasTemasBundle::admin.html.twig' %}
+
+{% block article %}
+    <h1>{{ 'Menu'|trans }}</h1>
+
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th>#</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'Name'|trans }}</th>
+                <td>{{ entity.name }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'Position'|trans }}</th>
+                <td>{{ entity.position }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'Article'|trans }}</th>
+                <td><a href="{{ path('admin_article_show', { 'id': entity.article.id }) }}">{{ entity.article }}</a></td>
+            </tr>
+            <tr>
+                <th>{{ 'Status'|trans }}</th>
+                <td>
+                    {% if entity.isActive == true %}
+                        <i  title="Activo" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>
+                    {% else %}
+                        <span>{{ 'Inactivo'|trans }}</span>
+                    {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_menu') }}" class="btn btn-info">
+        {{ 'Volver'|trans }}
+    </a>
+    <a href="{{ path('admin_menu_edit', { 'id': entity.id }) }}" class="btn btn-success">
+        {{ 'Editar'|trans }}
+    </a>
+{% endblock %}

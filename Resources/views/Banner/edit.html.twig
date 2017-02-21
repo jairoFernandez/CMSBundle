@@ -1,0 +1,8 @@
+{% extends 'TemasTemasBundle::admin.html.twig' %}
+
+{% block article %}
+    <h1>{{ 'Banner'|trans }} {{ 'edit'|trans }}</h1>
+    {{ form(edit_form) }}
+    <a href="{{ path('admin_banner') }}" class="btn btn-success btn-sm">{{ 'Volver '|trans }}</a>
+    {{ form(delete_form) }}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'TemasTemasBundle::admin.html.twig' %}
+
+{% block article %}
+    <h1>{{ 'Banner'|trans }} {{ 'images'|trans }} {{ 'edit'|trans }}</h1>
+<div class="span4">
+    {{ form(edit_form) }}
+
+    <a href="{{ path('admin_banner_show', { 'id': entity.banner.id }) }}"  class="btn btn-success btn-sx">{{ 'Volver'|trans }}</a>
+    {{ form(delete_form) }}
+
+</div>
+
+    <div class="span6">
+        <img src="{{ asset(entity.getWebPath) }}" alt="" style="width: 50%">
+
+    </div>
+{% endblock %}

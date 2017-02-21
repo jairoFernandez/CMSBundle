@@ -24,7 +24,7 @@ class BannerController extends Controller
      *
      * @Route("/", name="admin_banner")
      * @Method("GET")
-     * @Template()
+     * @Template("CmsBundle:Banner:index.html.twig")
      */
     public function indexAction()
     {
@@ -89,7 +89,7 @@ class BannerController extends Controller
      *
      * @Route("/new", name="admin_banner_new")
      * @Method("GET")
-     * @Template()
+     * @Template("CmsBundle:Banner:new.html.twig")
      */
     public function newAction()
     {
@@ -107,7 +107,7 @@ class BannerController extends Controller
      *
      * @Route("/{id}", name="admin_banner_show")
      * @Method("GET")
-     * @Template()
+     * @Template("CmsBundle:Banner:show.html.twig")
      */
     public function showAction($id)
     {

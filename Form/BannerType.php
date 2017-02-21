@@ -30,7 +30,7 @@ class BannerType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'CmsBundle\Entity\Banner'
+            'data_class' => 'Tucompu\CmsBundle\Entity\Banner'
         ));
     }
 

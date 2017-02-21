@@ -1,0 +1,62 @@
+{% extends 'TemasTemasBundle::admin.html.twig' %}
+{% block span %}
+    span4
+{% endblock %}
+{% block article %}
+    <h1>{{ 'Banner'|trans }}</h1>
+
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th>#</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'Name'|trans }}</th>
+                <td>{{ entity.name }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'Status'|trans }}</th>
+                <td> {% if entity.isActive == true %}
+                        <i  title="Activo" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>
+                    {% else %}
+                        <span>{{ 'Inactivo'|trans }}</span>
+                    {% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="{{ path('admin_banner') }}" class="btn btn-info">
+        {{ 'Volver'|trans }}
+   </a>
+    <a href="{{ path('admin_banner_edit', { 'id': entity.id }) }}" class="btn btn-success">
+        {{ 'Editar'|trans }}
+    </a>
+
+    {{ form(delete_form) }}
+
+{% endblock %}
+
+{% block extras %}
+    {% embed 'TemasTemasBundle::span.html.twig' %}
+
+        {% block spanclase %}
+            span7
+        {% endblock %}
+
+        {% block headerspan %}
+            <i class="icon-th-list"></i><h3> {{ 'Images'|trans }}</h3>
+        {% endblock %}
+
+        {# bloque del contenido, por defecto vacio #}
+        {% block articlespan %}
+            <a href="{{ path('admin_bannerimages_new', { 'id': entity.id }) }}" class="btn btn-success btn-sm">
+                {{ 'Add images'|trans }}
+            </a><hr>
+            {% for image in images %}
+                {% if image != null %}
+                    <a href="{{ path('admin_bannerimages_edit', { 'id': image.id }) }}"><img src="{{ asset(image.getWebPath) }}" width="30%" style="display: inline-block; margin: 5px;" /></a>
+                {% endif %}
+            {% endfor %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

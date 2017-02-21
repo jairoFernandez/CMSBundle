@@ -23,7 +23,7 @@ class CategoryController extends Controller
      *
      * @Route("/", name="admin_article-category")
      * @Method("GET")
-     * @Template()
+     * @Template("CmsBundle:Category:index.html.twig")
      */
     public function indexAction()
     {
@@ -88,7 +88,7 @@ class CategoryController extends Controller
      *
      * @Route("/new", name="admin_article-category_new")
      * @Method("GET")
-     * @Template()
+     * @Template("CmsBundle:Category:new.html.twig")
      */
     public function newAction()
     {
@@ -106,7 +106,7 @@ class CategoryController extends Controller
      *
      * @Route("/{id}", name="admin_article-category_show")
      * @Method("GET")
-     * @Template()
+     * @Template("CmsBundle:Category:show.html.twig")
      */
     public function showAction($id)
     {
@@ -131,7 +131,7 @@ class CategoryController extends Controller
      *
      * @Route("/{id}/edit", name="admin_article-category_edit")
      * @Method("GET")
-     * @Template()
+     * @Template("CmsBundle:Category:edit.html.twig")
      */
     public function editAction($id)
     {

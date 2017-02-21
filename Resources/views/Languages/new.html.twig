@@ -1,0 +1,12 @@
+{% extends 'TemasTemasBundle::admin.html.twig' %}
+
+{% block article %}
+    <h1>{{ 'Languages'|trans }} {{ 'creation'|trans }}</h1>
+
+    {{ form(form) }}
+
+    <a href="{{ path('admin_languages') }}" class="btn btn-info">
+        {{ 'Volver'|trans }}
+    </a>
+
+{% endblock %}

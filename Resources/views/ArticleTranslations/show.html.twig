@@ -1,0 +1,53 @@
+{% extends 'TemasTemasBundle::admin.html.twig' %}
+
+{% block article %}
+    <h1>{{ entity.article.title }} ({{ entity.language }})</h1>
+
+    <table class="table table-striped table-bordered">
+        <tbody>
+            <tr>
+                <th>#</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'Title'|trans }}</th>
+                <td>{{ entity.title }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'Short description'|trans }}</th>
+                <td>{{ entity.shortDescription }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'Content'|trans }}</th>
+                <td>{{ entity.content|raw }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'Status'|trans }}</th>
+                <td>{% if entity.isActive == true %}
+                        <i  title="Activo" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>
+                    {% else %}
+                        <span>{{ 'Inactivo'|trans }}</span>
+                    {% endif %}</td>
+            </tr>
+            <tr>
+                <th>{{ 'Tags'|trans }}</th>
+                <td>{{ entity.tags }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'Created at'|trans }}</th>
+                <td>{{ entity.createAt|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'Modified at'|trans }}</th>
+                <td>{{ entity.modifiedAt|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+            <a href="{{ path('admin_article_show', { 'id': entity.article.id }) }}" class="btn btn-info">
+                {{ 'Volver'|trans }}
+            </a>
+            <a href="{{ path('admin_article-trans_edit', { 'id': entity.id }) }}" class="btn btn-success">
+                {{ 'Editar'|trans }}
+            </a>
+</ul>
+{% endblock %}

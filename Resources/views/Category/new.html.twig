@@ -1,0 +1,11 @@
+{% extends 'CmsBundle::layout.html.twig' %}
+
+{% block body %}
+    <h1>{{ 'Category'|trans }} {{ 'creation'|trans }}</h1>
+
+    {{ form(form) }}
+
+    <a href="{{ path('admin_article-category') }}" class="btn btn-info">
+        {{ 'Volver'|trans }}
+    </a>
+{% endblock %}

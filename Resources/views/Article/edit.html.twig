@@ -1,0 +1,31 @@
+{% extends 'CmsBundle::layout.html.twig' %}
+
+{% block body %}
+    <div class="span4">
+    <h1>{{ 'Article'|trans }} {{ 'edit'|trans }}</h1>
+
+    {{ form_start(edit_form) }}
+    {{ form_widget(edit_form) }}
+
+    <div class="top">
+        <input class="btn btn-primary btn-sm" type="submit" value="{{ 'Editar '|trans }}" />
+        <a href="{{ path('admin_article_show', {'id': entity.id }) }}" class="btn btn-success btn-sm">{{ 'Volver '|trans }}</a>
+    </div>
+    <br>
+    {{ form_end(edit_form) }}
+
+    {{ form_start(delete_form) }}
+    {{ form_widget(delete_form) }}
+    <div class="top">
+        <input class="btn btn-danger btn-sm" type="submit" value="{{ 'Eliminar '|trans }}" />
+    </div>
+    {{ form_end(delete_form) }}
+    </div>
+    <div class="span4">
+
+        {% if entity.path != null and entity.path != ""  %}
+            <img src="{{ asset(entity.getWebPath) }}" width="100%" />
+        {% endif %}
+    </div>
+
+{% endblock %}

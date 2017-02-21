@@ -38,7 +38,7 @@ class ArticleType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'CmsBundle\Entity\Article'
+            'data_class' => 'Tucompu\CmsBundle\Entity\Article'
         ));
     }
 

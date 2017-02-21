@@ -23,7 +23,7 @@ class MenuController extends Controller
      *
      * @Route("/", name="admin_menu")
      * @Method("GET")
-     * @Template()
+     * @Template("CmsBundle:Menu:index.html.twig")
      */
     public function indexAction()
     {
@@ -88,7 +88,7 @@ class MenuController extends Controller
      *
      * @Route("/new", name="admin_menu_new")
      * @Method("GET")
-     * @Template()
+     * @Template("CmsBundle:Menu:new.html.twig")
      */
     public function newAction()
     {
@@ -106,7 +106,7 @@ class MenuController extends Controller
      *
      * @Route("/{id}", name="admin_menu_show")
      * @Method("GET")
-     * @Template()
+     * @Template("CmsBundle:show:index.html.twig")
      */
     public function showAction($id)
     {
@@ -131,7 +131,7 @@ class MenuController extends Controller
      *
      * @Route("/{id}/edit", name="admin_menu_edit")
      * @Method("GET")
-     * @Template()
+     * @Template("CmsBundle:Menu:edit.html.twig")
      */
     public function editAction($id)
     {

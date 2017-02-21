@@ -23,7 +23,7 @@ class ArticleTranslationsController extends Controller
      *
      * @Route("/", name="admin_article-trans")
      * @Method("GET")
-     * @Template()
+     * @Template("CmsBundle:ArticleTranslations:index.html.twig")
      */
     public function indexAction()
     {
@@ -88,7 +88,7 @@ class ArticleTranslationsController extends Controller
      *
      * @Route("/new", name="admin_article-trans_new")
      * @Method("GET")
-     * @Template()
+     * @Template("CmsBundle:ArticleTranslations:new.html.twig")
      */
     public function newAction()
     {
@@ -106,7 +106,7 @@ class ArticleTranslationsController extends Controller
      *
      * @Route("/{id}", name="admin_article-trans_show")
      * @Method("GET")
-     * @Template()
+     * @Template("CmsBundle:ArticleTranslations:show.html.twig")
      */
     public function showAction($id)
     {

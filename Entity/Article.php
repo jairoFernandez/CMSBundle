@@ -373,4 +373,72 @@ class Article
 
         return $this;
     }
+
+    /**
+     * Add translation
+     *
+     * @param \Tucompu\CmsBundle\Entity\ArticleTranslations $translation
+     *
+     * @return Article
+     */
+    public function addTranslation(\Tucompu\CmsBundle\Entity\ArticleTranslations $translation)
+    {
+        $this->translations[] = $translation;
+
+        return $this;
+    }
+
+    /**
+     * Remove translation
+     *
+     * @param \Tucompu\CmsBundle\Entity\ArticleTranslations $translation
+     */
+    public function removeTranslation(\Tucompu\CmsBundle\Entity\ArticleTranslations $translation)
+    {
+        $this->translations->removeElement($translation);
+    }
+
+    /**
+     * Get translations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
+    }
+
+    /**
+     * Add category
+     *
+     * @param \Tucompu\CmsBundle\Entity\Category $category
+     *
+     * @return Article
+     */
+    public function addCategory(\Tucompu\CmsBundle\Entity\Category $category)
+    {
+        $this->category[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \Tucompu\CmsBundle\Entity\Category $category
+     */
+    public function removeCategory(\Tucompu\CmsBundle\Entity\Category $category)
+    {
+        $this->category->removeElement($category);
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
 }

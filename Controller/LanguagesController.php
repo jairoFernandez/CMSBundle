@@ -23,7 +23,7 @@ class LanguagesController extends Controller
      *
      * @Route("/", name="admin_languages")
      * @Method("GET")
-     * @Template()
+     * @Template("CmsBundle:Languages:index.html.twig")
      */
     public function indexAction()
     {
@@ -88,7 +88,7 @@ class LanguagesController extends Controller
      *
      * @Route("/new", name="admin_languages_new")
      * @Method("GET")
-     * @Template()
+     * @Template("CmsBundle:Languages:new.html.twig")
      */
     public function newAction()
     {
@@ -106,7 +106,7 @@ class LanguagesController extends Controller
      *
      * @Route("/{id}", name="admin_languages_show")
      * @Method("GET")
-     * @Template()
+     * @Template("CmsBundle:Languages:show.html.twig")
      */
     public function showAction($id)
     {
@@ -131,7 +131,7 @@ class LanguagesController extends Controller
      *
      * @Route("/{id}/edit", name="admin_languages_edit")
      * @Method("GET")
-     * @Template()
+     * @Template("CmsBundle:Languages:edit.html.twig")
      */
     public function editAction($id)
     {

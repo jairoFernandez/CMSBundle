@@ -1,0 +1,46 @@
+{% extends 'TemasTemasBundle::admin.html.twig' %}
+
+{% block article %}
+    <h1>{{ 'Add images Banner'|trans }}</h1>
+
+    {{ form(form) }}
+
+    <a href="#" id="volver" class="btn btn-success btn-sx">{{ 'Volver'|trans }}</a>
+
+
+</ul>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function () {
+            var idBanner = getParameterByName('id');
+            var rutaVolver = "{{ path('admin_banner_show', { 'id': 'IDBANNER' }) }}";
+            rutaVolver = rutaVolver.replace("IDBANNER",idBanner);
+
+            if(idBanner != null){
+                $("#appbundle_bannerimages_banner").val(idBanner);
+            }
+
+            $("#volver").click(function(){
+                location.href = rutaVolver;
+            })
+        })
+
+
+
+        function getParameterByName(name, url) {
+            if (!url) {
+                url = window.location.href;
+            }
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                    results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+
+    </script>
+{% endblock %}

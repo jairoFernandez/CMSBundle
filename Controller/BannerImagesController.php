@@ -23,7 +23,7 @@ class BannerImagesController extends Controller
      *
      * @Route("/", name="admin_bannerimages")
      * @Method("GET")
-     * @Template()
+     * @Template("CmsBundle:BannerImages:index.html.twig")
      */
     public function indexAction()
     {
@@ -88,7 +88,7 @@ class BannerImagesController extends Controller
      *
      * @Route("/new", name="admin_bannerimages_new")
      * @Method("GET")
-     * @Template()
+     * @Template("CmsBundle:BannerImages:new.html.twig")
      */
     public function newAction()
     {
@@ -106,7 +106,7 @@ class BannerImagesController extends Controller
      *
      * @Route("/{id}", name="admin_bannerimages_show")
      * @Method("GET")
-     * @Template()
+     * @Template("CmsBundle:BannerImages:show.html.twig")
      */
     public function showAction($id)
     {

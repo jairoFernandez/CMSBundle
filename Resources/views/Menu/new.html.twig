@@ -1,0 +1,12 @@
+{% extends 'TemasTemasBundle::admin.html.twig' %}
+
+{% block article %}
+    <h1>{{ 'Create'|trans }} {{ 'menu'|trans }}</h1>
+
+    {{ form(form) }}
+
+
+        <a href="{{ path('admin_menu') }}" class="btn btn-info">
+            {{ 'Volver'|trans }}
+        </a>
+{% endblock %}

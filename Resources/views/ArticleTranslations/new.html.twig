@@ -1,0 +1,39 @@
+{% extends 'TemasTemasBundle::admin.html.twig' %}
+
+{% block article %}
+    <h1>{{ 'New' }} {{ 'traduction' }}</h1>
+    {{ tinymce_init() }}
+    {{ form(form) }}
+
+
+        <a href="javascript:history.back(1)" class="btn btn-info">
+            {{ 'Volver'|trans }}
+        </a>
+
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+    <script>
+        $(document).ready(function () {
+            var idArticle = getParameterByName('id');
+            if(idArticle != null){
+                $("#appbundle_articletranslations_article").val(idArticle);
+            }
+
+        })
+
+        function getParameterByName(name, url) {
+            if (!url) {
+                url = window.location.href;
+            }
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                    results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+
+    </script>
+{% endblock %}
