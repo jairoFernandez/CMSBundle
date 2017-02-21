@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Banner
  *
  * @ORM\Table(name="WEB_Banner")
- * @ORM\Entity(repositoryClass="CmsBundle\Entity\BannerRepository")
+ * @ORM\Entity(repositoryClass="Tucompu\CmsBundle\Entity\BannerRepository")
  */
 class Banner
 {

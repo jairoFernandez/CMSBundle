@@ -5,18 +5,23 @@
  * Time: 08:22 PM
  */
 
-namespace Tucompu\CmsBundle\Controller\Http;
+namespace Tucompu\CmsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class HomeController
+ * @package Tucompu\CmsBundle\Controller
+ * @Route("/page")
+ */
 class HomeController extends Controller
 {
     /**
      * @Route("/")
-     * @Template("Http/home.html.twig")
+     * @Template("CmsBundle:frontend:home.html.twig")
      */
     public function indexAction(Request $request)
     {
@@ -35,7 +40,7 @@ class HomeController extends Controller
      * @Route("/{slug}", name="pageDetail")
      * @param $slug
      * @param $lang
-     * @Template("Http/page.html.twig")
+     * @Template("CmsBundle:frontend:page.html.twig")
      * @return array
      */
     public function pageAction($slug)

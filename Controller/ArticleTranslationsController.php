@@ -1,6 +1,6 @@
 <?php
 
-namespace TuCompu\CmsBundle\Controller;
+namespace Tucompu\CmsBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

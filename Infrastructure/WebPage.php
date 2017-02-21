@@ -5,7 +5,7 @@
  * Time: 03:41 PM
  */
 
-namespace Tucompu\CmsBundle\Infrastructure\Web;
+namespace Tucompu\CmsBundle\Infrastructure;
 
 
 use Tucompu\CmsBundle\Entity\Article;

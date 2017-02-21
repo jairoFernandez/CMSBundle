@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Category
  *
  * @ORM\Table(name="WEB_Category")
- * @ORM\Entity(repositoryClass="CmsBundle\Entity\CategoryRepository")
+ * @ORM\Entity(repositoryClass="Tucompu\CmsBundle\Entity\CategoryRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class Category

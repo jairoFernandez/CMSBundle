@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  * Article
  *
  * @ORM\Table(name="WEB_Article")
- * @ORM\Entity(repositoryClass="CmsBundle\Entity\ArticleRepository")
+ * @ORM\Entity(repositoryClass="Tucompu\CmsBundle\Entity\ArticleRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class Article

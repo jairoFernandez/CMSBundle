@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Languages
  *
  * @ORM\Table(name="WEB_Languages")
- * @ORM\Entity(repositoryClass="CmsBundle\Entity\LanguagesRepository")
+ * @ORM\Entity(repositoryClass="Tucompu\CmsBundle\Entity\LanguagesRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class Languages

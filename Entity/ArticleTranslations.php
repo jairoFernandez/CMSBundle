@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * ArticleTranslations
  *
  * @ORM\Table(name="WEB_ArticleTranslations")
- * @ORM\Entity(repositoryClass="CmsBundle\Entity\ArticleTranslationsRepository")
+ * @ORM\Entity(repositoryClass="Tucompu\CmsBundle\Entity\ArticleTranslationsRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class ArticleTranslations

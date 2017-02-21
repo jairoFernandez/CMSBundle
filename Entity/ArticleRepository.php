@@ -45,7 +45,7 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
     {
         $em = $this->getEntityManager();
         $articles = $em->createQuery('
-            SELECT ats,a,l FROM AppBundle:ArticleTranslations ats
+            SELECT ats,a,l FROM CmsBundle:ArticleTranslations ats
             JOIN ats.article a
             JOIN ats.language l
             WHERE l.code = :lang
@@ -65,7 +65,7 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
         }
         $em = $this->getEntityManager();
         $articles = $em->createQuery('
-            SELECT ats,a,l FROM AppBundle:ArticleTranslations ats
+            SELECT ats,a,l FROM CmsBundle:ArticleTranslations ats
             JOIN ats.article a
             JOIN ats.language l
             WHERE l.code = :lang AND a.slug = :slug
@@ -83,7 +83,7 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
         }
         $em = $this->getEntityManager();
         $articles = $em->createQuery('
-            SELECT ats,a,l FROM AppBundle:ArticleTranslations ats
+            SELECT ats,a,l FROM CmsBundle:ArticleTranslations ats
             JOIN ats.article a
             JOIN ats.language l
             WHERE a.slug = :slug

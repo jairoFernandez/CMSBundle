@@ -1,14 +1,14 @@
 <?php
 
-namespace TuCompu\CmsBundle\Controller;
+namespace Tucompu\CmsBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use TuCompu\CmsBundle\Entity\Article;
-use TuCompu\CmsBundle\Form\ArticleType;
+use Tucompu\CmsBundle\Entity\Article;
+use Tucompu\CmsBundle\Form\ArticleType;
 
 /**
  * Article controller.

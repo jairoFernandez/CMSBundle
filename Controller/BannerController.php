@@ -1,6 +1,6 @@
 <?php
 
-namespace TuCompu\CmsBundle\Controller;
+namespace Tucompu\CmsBundle\Controller;
 
 use AppBundle\Entity\BannerImages;
 use Symfony\Component\HttpFoundation\Request;
