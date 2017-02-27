@@ -15,15 +15,30 @@ class ArticleTranslationsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('article')
-            ->add('language',null, array(
-                'required' => true
+            ->add('article',null,array(
+                'attr'=>array(
+                    'class' => 'form-control'
+                )
             ))
-            ->add('title')
-            ->add('shortDescription')
+            ->add('language',null, array(
+                'required' => true,'attr'=>array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('title',null,array(
+                'attr'=>array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('shortDescription',null,array(
+                'attr'=>array(
+                    'class' => 'form-control'
+                )
+            ))
             ->add('tags',null, array(
                 'attr' => array(
-                    'placeholder' => 'tema1, tema2'
+                    'placeholder' => 'tema1, tema2',
+                    'class' => 'form-control'
                 )
             ))
             ->add('content','textarea', array(

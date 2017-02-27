@@ -40,7 +40,7 @@ class ArticleController extends Controller
      *
      * @Route("/", name="admin_article_create")
      * @Method("POST")
-     * @Template()
+     * @Template("CmsBundle:Article:new.html.twig")
      */
     public function createAction(Request $request)
     {
@@ -137,7 +137,7 @@ class ArticleController extends Controller
      *
      * @Route("/{id}/edit", name="admin_article_edit")
      * @Method("GET")
-     * @Template("CmsBundle:admin:Article:edit.html.twig")
+     * @Template("CmsBundle:Article:edit.html.twig")
      */
     public function editAction($id)
     {
@@ -182,7 +182,7 @@ class ArticleController extends Controller
      *
      * @Route("/{id}", name="admin_article_update")
      * @Method("PUT")
-     * @Template("AppBundle:Article:edit.html.twig")
+     * @Template("CmsBundle:Article:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {

@@ -1,116 +1,105 @@
-{% extends 'CmsBundle::layout.html.twig' %}
+{% extends 'CmsBundle::layout_admin.html.twig' %}
 
 {% block body %}
-    <h1>{{ 'Article'|trans }}</h1>
-
-    <table class="table table-bordered">
-        <tbody>
-            <tr>
-                <th>#</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>{{ 'Title'|trans }}</th>
-                <td>{{ entity.title }}</td>
-            </tr>
-            <tr>
-                <th>{{ 'Created at'|trans }}</th>
-                <td>{{ entity.createAt|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>{{ 'Modified at'|trans }}</th>
-                <td>{{ entity.modifiedAt|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>{{ 'Status'|trans }}</th>
-                <td> {% if entity.isActive == true %}
-                        <i  title="Activo" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>
-                    {% else %}
-                        <span>{{ 'Inactivo'|trans }}</span>
-                    {% endif %}</td>
-            </tr>
-            <tr>
-                <th>{{ 'Slug'|trans }}</th>
-                <td>{{ entity.slug }}</td>
-            </tr>
-            <tr>
-                <th>{{  'Category'|trans }}</th>
-                <td>{% for category in entity.category %} {{ category }}, {% endfor %}</td>
-            </tr>
-            <tr>
-                <th>{{ 'Previsualize'|trans }}</th>
-                <td><a href="{{ path('pageDetail', { 'slug': entity.slug }) }}" target="_blank" class="action"><i
-                                class="fa fa-book"></i>{{ path('pageDetail', { 'slug': entity.slug }) }}</a></td>
-            </tr>
-        </tbody>
-    </table>
-        <a href="{{ path('admin_article') }}" class="btn btn-info">
-            {{ 'Volver'|trans }}
-        </a>
-        <a href="{{ path('admin_article_edit', { 'id': entity.id }) }}" class="btn btn-success">
-            {{ 'Editar'|trans }}
-        </a>
+    {% embed 'templates/admin/ppal_title.html.twig' %}
+        {% block titleBasic %}{{ "Articles"|trans }}{% endblock %}
+        {% block subtitleBasic %}{{ "Configure your articles"|trans }}{% endblock %}
+    {% endembed %}
+    <p></p>
+    {% embed 'templates/admin/panel.html.twig' %}
+        {% block colPanel %}col-sm-4{% endblock %}
+        {% block titlePanel %}{{ 'Article'|trans }}{% endblock %}
+        {% block bodyPanel %}
+            <table class="table table-bordered">
+                <tbody>
+                <tr>
+                    <th>#</th>
+                    <td>{{ entity.id }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Title'|trans }}</th>
+                    <td>{{ entity.title }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Created at'|trans }}</th>
+                    <td>{{ entity.createAt|date('Y-m-d H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Modified at'|trans }}</th>
+                    <td>{{ entity.modifiedAt|date('Y-m-d H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Status'|trans }}</th>
+                    <td> {% if entity.isActive == true %}
+                            <i title="Activo" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>
+                        {% else %}
+                            <span>{{ 'Inactivo'|trans }}</span>
+                        {% endif %}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Slug'|trans }}</th>
+                    <td>{{ entity.slug }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Category'|trans }}</th>
+                    <td>{% for category in entity.category %} {{ category }}, {% endfor %}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Previsualize'|trans }}</th>
+                    <td><a href="{{ path('pageDetail', { 'slug': entity.slug }) }}" target="_blank" class="action"><i
+                                    class="fa fa-book"></i>{{ path('pageDetail', { 'slug': entity.slug }) }}</a></td>
+                </tr>
+                </tbody>
+            </table>
+            <a href="{{ path('admin_article') }}" class="btn btn-info">
+                {{ 'Volver'|trans }}
+            </a>
+            <a href="{{ path('admin_article_edit', { 'id': entity.id }) }}" class="btn btn-success">
+                {{ 'Editar'|trans }}
+            </a>
+        {% endblock %}
+    {% endembed %}
 {% endblock %}
 {% block extras %}
-    {% embed 'TemasTemasBundle::span.html.twig' %}
-
-        {% block spanclase %}
-            span7
-        {% endblock %}
-
-        {% block headerspan %}
-            <i class="icon-th-list"></i><h3> {{ 'Traductions'|trans }}</h3>
-        {% endblock %}
-
-        {# bloque del contenido, por defecto vacio #}
-        {% block articlespan %}
-
+    {% embed 'templates/admin/panel.html.twig' %}
+        {% block colPanel %}col-sm-8{% endblock %}
+        {% block titlePanel %}{{ 'Traductions'|trans }}{% endblock %}
+        {% block bodyPanel %}
             <a href="{{ path('admin_article-trans_new', { 'id': entity.id }) }}" class="btn btn-success">
                 {{ 'Create'|trans }} {{ 'traduction'|trans }}
             </a>
             <hr>
             <table class="table table-bordered">
                 <thead>
-                    <th>
-                        {{ 'Language'|trans }}
-                    </th>
-                    <th>
-                       {{ 'Title'|trans }}
-                    </th>
-                    <th>
-                        {{ 'Actions'|trans }}
-                    </th>
+                <th>
+                    {{ 'Language'|trans }}
+                </th>
+                <th>
+                    {{ 'Title'|trans }}
+                </th>
+                <th>
+                    {{ 'Actions'|trans }}
+                </th>
                 </thead>
                 <tbody>
-                    {% for traduction in entity.translations %}
-                        <tr>
-                            <td>{{ traduction.language }}</td>
-                            <td>{{ traduction.title }}</td>
-                            <td>
-                                <a href="{{ path('admin_article-trans_show', { 'id': traduction.id }) }}" class="btn btn-success">{{ 'Ver'|trans }}</a>
-                                <a href="{{ path('admin_article-trans_edit', { 'id': traduction.id }) }}" class="btn btn-info">{{ 'Editar'|trans }}</a>
-                            </td>
-                        </tr>
-                    {% endfor %}
+                {% for traduction in entity.translations %}
+                    <tr>
+                        <td>{{ traduction.language }}</td>
+                        <td>{{ traduction.title }}</td>
+                        <td>
+                            <a href="{{ path('admin_article-trans_show', { 'id': traduction.id }) }}"
+                               class="btn btn-success">{{ 'Ver'|trans }}</a>
+                            <a href="{{ path('admin_article-trans_edit', { 'id': traduction.id }) }}"
+                               class="btn btn-info">{{ 'Editar'|trans }}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
-        {% endblock %}
-    {% endembed %}
-
-    {% embed 'TemasTemasBundle::span.html.twig' %}
-
-        {% block spanclase %}
-            span7
-        {% endblock %}
-
-        {% block headerspan %}
             <i class="icon-th-list"></i><h3> {{ 'Image'|trans }}</h3>
-        {% endblock %}
 
-        {# bloque del contenido, por defecto vacio #}
-        {% block articlespan %}
-            {% if entity.path != null and entity.path != ""  %}
-                <img src="{{ asset(entity.getWebPath) }}" width="100%" />
+            {% if entity.path != null and entity.path != "" %}
+                <img src="{{ asset(entity.getWebPath) }}" width="100%"/>
             {% endif %}
         {% endblock %}
     {% endembed %}

@@ -1,14 +1,19 @@
-{% extends 'TemasTemasBundle::admin.html.twig' %}
+{% extends 'CmsBundle::layout_admin.html.twig' %}
 
-{% block article %}
-    <h1>{{ 'New' }} {{ 'traduction' }}</h1>
-    {{ tinymce_init() }}
-    {{ form(form) }}
+{% block body %}
+    {% embed 'templates/admin/panel.html.twig' %}
+        {% block colPanel %}col-sm-9{% endblock %}
+        {% block titlePanel %}{{ 'New' }} {{ 'traduction' }}{% endblock %}
+        {% block bodyPanel %}
+            {{ tinymce_init() }}
+            {{ form(form) }}
 
 
-        <a href="javascript:history.back(1)" class="btn btn-info">
-            {{ 'Volver'|trans }}
-        </a>
+            <a href="javascript:history.back(1)" class="btn btn-info">
+                {{ 'Volver'|trans }}
+            </a>
+        {% endblock %}
+    {% endembed %}
 
 {% endblock %}
 {% block javascripts %}
