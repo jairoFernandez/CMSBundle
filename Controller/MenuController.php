@@ -106,7 +106,7 @@ class MenuController extends Controller
      *
      * @Route("/{id}", name="admin_menu_show")
      * @Method("GET")
-     * @Template("CmsBundle:show:index.html.twig")
+     * @Template("CmsBundle:Menu:show.html.twig")
      */
     public function showAction($id)
     {

@@ -1,8 +1,18 @@
-{% extends 'TemasTemasBundle::admin.html.twig' %}
+{% extends 'CmsBundle::layout_admin.html.twig' %}
 
-{% block article %}
-    <h1>{{ 'Banner'|trans }} {{ 'edit'|trans }}</h1>
-    {{ form(edit_form) }}
-    <a href="{{ path('admin_banner') }}" class="btn btn-success btn-sm">{{ 'Volver '|trans }}</a>
-    {{ form(delete_form) }}
+{% block body %}
+    {% embed 'templates/admin/ppal_title.html.twig' %}
+        {% block titleBasic %}{{ 'Banner'|trans }} {{ 'edit'|trans }}{% endblock %}
+        {% block subtitleBasic %}{{ "Configure your banner"|trans }}{% endblock %}
+    {% endembed %}
+    {% embed 'templates/admin/panel.html.twig' %}
+        {% block colPanel %}col-sm-9{% endblock %}
+        {% block titlePanel %}{% endblock %}
+        {% block bodyPanel %}
+            {{ form(edit_form) }}
+            <a href="{{ path('admin_banner') }}" class="btn btn-success btn-sm">{{ 'Volver '|trans }}</a>
+            {{ form(delete_form) }}
+        {% endblock %}
+    {% endembed %}
+
 {% endblock %}

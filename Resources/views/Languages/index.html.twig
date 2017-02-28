@@ -1,25 +1,22 @@
 {% extends 'CmsBundle::layout_admin.html.twig' %}
 
 {% block body %}
-    <div class="bg-light lter b-b wrapper-md">
-        <div class="row">
-            <div class="col-sm-6 col-xs-12">
-                <h1 class="m-n font-thin h3 text-black">{{ "Articles"|trans }}</h1>
-                <small class="text-muted">{{ "Configure your articles"|trans }}</small>
-            </div>
-        </div>
-    </div>
+    {% embed 'templates/admin/ppal_title.html.twig' %}
+        {% block titleBasic %}{{ 'Article'|trans }} {{ 'edit'|trans }}{% endblock %}
+        {% block subtitleBasic %}{{ "Configure your articles"|trans }}{% endblock %}
+    {% endembed %}
 
     <div class="wrapper-md">
+
         <a href="{{ path('admin_languages_new') }}" class="btn btn-success btn-sm">
             {{ 'Create'|trans }}
         </a>
         <p></p>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                {{ 'Languages'|trans }} {{ 'list'|trans }}
-            </div>
-            <div>
+
+        {% embed 'templates/admin/panel.html.twig' %}
+            {% block colPanel %}col-sm-9{% endblock %}
+            {% block titlePanel %}  {{ 'Languages'|trans }} {{ 'list'|trans }}{% endblock %}
+            {% block bodyPanel %}
                 <table class="table m-b-none" ui-jq="footable" data-filter="#filter" data-page-size="10">
                     <thead>
                     <tr>
@@ -54,7 +51,7 @@
                     {% endfor %}
                     </tbody>
                 </table>
-            </div>
-        </div>
+            {% endblock %}
+        {% endembed %}
     </div>
 {% endblock %}

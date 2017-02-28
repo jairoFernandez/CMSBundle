@@ -15,9 +15,21 @@ class MenuType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('article')
-            ->add('name')
-            ->add('position')
+            ->add('article',null,array(
+                'attr'=>array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('name',null,array(
+                'attr'=>array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('position',null,array(
+                'attr'=>array(
+                    'class' => 'form-control'
+                )
+            ))
             ->add('isActive',null,array(
                 'required'=>false,
                 'attr'=>array('class'=>'switch_widget'),

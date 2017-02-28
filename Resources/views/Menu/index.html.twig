@@ -1,38 +1,48 @@
-{% extends 'TemasTemasBundle::admin.html.twig' %}
+{% extends 'CmsBundle::layout_admin.html.twig' %}
 
-{% block article %}
-    <h1>{{ 'Menu'|trans }} {{ 'list'|trans }}</h1>
-    <hr>
-    <a href="{{ path('admin_menu_new') }}" class="btn btn-success btn-sm">
-        {{ 'Create'|trans }}
-    </a>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>{{ 'Name'|trans }}</th>
-                <th>{{ 'Position'|trans }}</th>
-                <th>{{ 'Status'|trans }}</th>
-                <th>{{ 'Actions'|trans }}</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('admin_menu_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.name }}</td>
-                <td>{{ entity.position }}</td>
-                <td>{% if entity.isActive == true %}
-                        <i  title="Activo" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>
-                    {% else %}
-                        <span>{{ 'Inactivo'|trans }}</span>
-                    {% endif %}</td>
-                <td>
-                    <a href="{{ path('admin_menu_show', { 'id': entity.id }) }}"  class="btn btn-success btn-sx">{{ 'Ver'|trans }}</a>
-                    <a href="{{ path('admin_menu_edit', { 'id': entity.id }) }}"  class="btn btn-info btn-sx">{{ 'Editar'|trans }}</a>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{% block body %}
+    {% embed 'templates/admin/ppal_title.html.twig' %}
+        {% block titleBasic %}{{ 'Menu'|trans }} {{ 'list'|trans }}{% endblock %}
+        {% block subtitleBasic %}{{ "Configure your menus"|trans }}{% endblock %}
+    {% endembed %}
+    {% embed 'templates/admin/panel.html.twig' %}
+        {% block colPanel %}col-sm-9{% endblock %}
+        {% block titlePanel %}  {{ 'Menu'|trans }} {{ 'list'|trans }}{% endblock %}
+        {% block bodyPanel %}
+            <a href="{{ path('admin_menu_new') }}" class="btn btn-success btn-sm">
+                {{ 'Create'|trans }}
+            </a>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>{{ 'Name'|trans }}</th>
+                    <th>{{ 'Position'|trans }}</th>
+                    <th>{{ 'Status'|trans }}</th>
+                    <th>{{ 'Actions'|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td><a href="{{ path('admin_menu_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                        <td>{{ entity.name }}</td>
+                        <td>{{ entity.position }}</td>
+                        <td>{% if entity.isActive == true %}
+                                <i  title="Activo" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>
+                            {% else %}
+                                <span>{{ 'Inactivo'|trans }}</span>
+                            {% endif %}</td>
+                        <td>
+                            <a href="{{ path('admin_menu_show', { 'id': entity.id }) }}"  class="btn btn-success btn-sx">{{ 'Ver'|trans }}</a>
+                            <a href="{{ path('admin_menu_edit', { 'id': entity.id }) }}"  class="btn btn-info btn-sx">{{ 'Editar'|trans }}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endblock %}
+    {% endembed %}
+
+
     {% endblock %}

@@ -21,9 +21,16 @@ class LanguagesType extends AbstractType
                     'es' => 'es',
                     'en' => 'en',
                     'fr' => 'fr'
+                ),
+                'attr'=>array(
+                    'class' => 'form-control'
                 )
             ))
-            ->add('language')
+            ->add('language',null,array(
+                'attr'=>array(
+                    'class' => 'form-control'
+                )
+            ))
             ->add('isActive',null,array(
                 'required'=>false,
                 'attr'=>array('class'=>'switch_widget'),

@@ -35,7 +35,6 @@ class Banner
      */
     private $isActive;
 
-
     /**
      * Get id
      *

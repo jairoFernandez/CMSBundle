@@ -1,45 +1,54 @@
-{% extends 'CmsBundle::layout.html.twig' %}
+{% extends 'CmsBundle::layout_admin.html.twig' %}
 
 {% block body %}
-    <h1>{{ 'Category'|trans }}</h1>
+    {% embed 'templates/admin/ppal_title.html.twig' %}
+        {% block titleBasic %}{{ 'Category'|trans }}{% endblock %}
+        {% block subtitleBasic %}{{ "Configure your categories"|trans }}{% endblock %}
+    {% endembed %}
+    {% embed 'templates/admin/panel.html.twig' %}
+        {% block colPanel %}col-sm-9{% endblock %}
+        {% block titlePanel %}  {{ 'Languages'|trans }} {{ 'list'|trans }}{% endblock %}
+        {% block bodyPanel %}
+            <table class="table table-bordered">
+                <tbody>
+                <tr>
+                    <th>#</th>
+                    <td>{{ entity.id }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Name'|trans }}</th>
+                    <td>{{ entity.name }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Description'|trans }}</th>
+                    <td>{{ entity.description }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Status'|trans }}</th>
+                    <td>{% if entity.isActive == true %}
+                            <i  title="Activo" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>
+                        {% else %}
+                            <span>{{ 'Inactivo'|trans }}</span>
+                        {% endif %}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Created at'|trans }}</th>
+                    <td>{{ entity.createAt|date('Y-m-d H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Modified at'|trans }}</th>
+                    <td>{{ entity.modifiedAt|date('Y-m-d H:i:s') }}</td>
+                </tr>
+                </tbody>
+            </table>
 
-    <table class="table table-bordered">
-        <tbody>
-            <tr>
-                <th>#</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>{{ 'Name'|trans }}</th>
-                <td>{{ entity.name }}</td>
-            </tr>
-            <tr>
-                <th>{{ 'Description'|trans }}</th>
-                <td>{{ entity.description }}</td>
-            </tr>
-            <tr>
-                <th>{{ 'Status'|trans }}</th>
-                <td>{% if entity.isActive == true %}
-                        <i  title="Activo" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>
-                    {% else %}
-                        <span>{{ 'Inactivo'|trans }}</span>
-                    {% endif %}</td>
-            </tr>
-            <tr>
-                <th>{{ 'Created at'|trans }}</th>
-                <td>{{ entity.createAt|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>{{ 'Modified at'|trans }}</th>
-                <td>{{ entity.modifiedAt|date('Y-m-d H:i:s') }}</td>
-            </tr>
-        </tbody>
-    </table>
+            <a href="{{ path('admin_article-category') }}" class="btn btn-info">
+                {{ 'Volver'|trans }}
+            </a>
+            <a href="{{ path('admin_article-category_edit', { 'id': entity.id }) }}" class="btn btn-success">
+                {{ 'Editar'|trans }}
+            </a>
+        {% endblock %}
+    {% endembed %}
 
-    <a href="{{ path('admin_article-category') }}" class="btn btn-info">
-        {{ 'Volver'|trans }}
-    </a>
-    <a href="{{ path('admin_article-category_edit', { 'id': entity.id }) }}" class="btn btn-success">
-        {{ 'Editar'|trans }}
-    </a>
 {% endblock %}

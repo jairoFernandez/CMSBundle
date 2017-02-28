@@ -1,14 +1,21 @@
-{% extends 'TemasTemasBundle::admin.html.twig' %}
+{% extends 'CmsBundle::layout_admin.html.twig' %}
 
-{% block article %}
-    <h1>{{ 'Add images Banner'|trans }}</h1>
+{% block body %}
+    {% embed 'templates/admin/ppal_title.html.twig' %}
+        {% block titleBasic %}{{ 'Add images Banner'|trans }}{% endblock %}
+        {% block subtitleBasic %}{{ "Images of banner"|trans }}{% endblock %}
+    {% endembed %}
+    {% embed 'templates/admin/panel.html.twig' %}
+        {% block colPanel %}col-sm-9{% endblock %}
+        {% block titlePanel %}{% endblock %}
+        {% block bodyPanel %}
+            {{ form(form) }}
 
-    {{ form(form) }}
+            <a href="#" id="volver" class="btn btn-success btn-sx">{{ 'Volver'|trans }}</a>
 
-    <a href="#" id="volver" class="btn btn-success btn-sx">{{ 'Volver'|trans }}</a>
+        {% endblock %}
+    {% endembed %}
 
-
-</ul>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}

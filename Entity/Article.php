@@ -295,7 +295,7 @@ class Article
     {
         // la ruta absoluta del directorio donde se deben
         // guardar los archivos cargados
-        $uploadDir = __DIR__.'/../../../web/'.$this->getUploadDir();
+        $uploadDir = __DIR__.'/../../../../web/'.$this->getUploadDir();
        // var_dump($uploadDir);
         return $uploadDir;
     }

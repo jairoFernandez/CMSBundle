@@ -15,7 +15,11 @@ class BannerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
+            ->add('name',null,array(
+                'attr'=>array(
+                    'class' => 'form-control'
+                )
+            ))
             ->add('isActive',null,array(
                 'required'=>false,
                 'attr'=>array('class'=>'switch_widget'),

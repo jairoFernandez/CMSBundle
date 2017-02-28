@@ -2,14 +2,14 @@
 
 namespace Tucompu\CmsBundle\Controller;
 
-use AppBundle\Entity\BannerImages;
+use Tucompu\CmsBundle\Entity\BannerImages;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use AppBundle\Entity\Banner;
-use AppBundle\Form\BannerType;
+use Tucompu\CmsBundle\Entity\Banner;
+use Tucompu\CmsBundle\Form\BannerType;
 
 /**
  * Banner controller.
@@ -30,7 +30,7 @@ class BannerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:Banner')->findAll();
+        $entities = $em->getRepository(Banner::class)->findAll();
 
         return array(
             'entities' => $entities,
@@ -113,7 +113,7 @@ class BannerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:Banner')->find($id);
+        $entity = $em->getRepository(Banner::class)->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Banner entity.');
@@ -141,7 +141,7 @@ class BannerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:Banner')->find($id);
+        $entity = $em->getRepository(Banner::class)->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Banner entity.');
@@ -186,7 +186,7 @@ class BannerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:Banner')->find($id);
+        $entity = $em->getRepository(Banner::class)->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Banner entity.');

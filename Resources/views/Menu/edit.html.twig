@@ -1,23 +1,32 @@
-{% extends 'TemasTemasBundle::admin.html.twig' %}
+{% extends 'CmsBundle::layout_admin.html.twig' %}
 
-{% block article %}
+{% block body %}
+    {% embed 'templates/admin/ppal_title.html.twig' %}
+        {% block titleBasic %}{{ 'Menu'|trans }} {{ 'edit'|trans }}{% endblock %}
+        {% block subtitleBasic %}{{ "Configure your categories"|trans }}{% endblock %}
+    {% endembed %}
+    {% embed 'templates/admin/panel.html.twig' %}
+        {% block colPanel %}col-sm-9{% endblock %}
+        {% block titlePanel %}  {{ 'Languages'|trans }} {{ 'list'|trans }}{% endblock %}
+        {% block bodyPanel %}
+            {{ form_start(edit_form) }}
+            {{ form_widget(edit_form) }}
 
-    <h1>{{ 'Menu'|trans }} {{ 'edit'|trans }}</h1>
+            <div class="top">
+                <input class="btn btn-primary btn-sm" type="submit" value="{{ 'Editar '|trans }}" />
+                <a href="{{ path('admin_menu') }}" class="btn btn-success btn-sm">{{ 'Volver '|trans }}</a>
+            </div>
+            <br>
+            {{ form_end(edit_form) }}
 
-    {{ form_start(edit_form) }}
-    {{ form_widget(edit_form) }}
+            {{ form_start(delete_form) }}
+            {{ form_widget(delete_form) }}
+            <div class="top">
+                <input class="btn btn-danger btn-sm" type="submit" value="{{ 'Eliminar '|trans }}" />
+            </div>
+            {{ form_end(delete_form) }}
+        {% endblock %}
+    {% endembed %}
 
-    <div class="top">
-        <input class="btn btn-primary btn-sm" type="submit" value="{{ 'Editar '|trans }}" />
-        <a href="{{ path('admin_menu') }}" class="btn btn-success btn-sm">{{ 'Volver '|trans }}</a>
-    </div>
-    <br>
-    {{ form_end(edit_form) }}
 
-    {{ form_start(delete_form) }}
-    {{ form_widget(delete_form) }}
-    <div class="top">
-        <input class="btn btn-danger btn-sm" type="submit" value="{{ 'Eliminar '|trans }}" />
-    </div>
-    {{ form_end(delete_form) }}
 {% endblock %}

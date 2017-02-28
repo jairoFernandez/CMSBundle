@@ -1,9 +1,17 @@
-{% extends 'TemasTemasBundle::admin.html.twig' %}
+{% extends 'CmsBundle::layout_admin.html.twig' %}
 
-{% block article %}
-    <h1>{{ 'Banner'|trans }} {{ 'creation'|trans }}</h1>
+{% block body %}
+    {% embed 'templates/admin/ppal_title.html.twig' %}
+        {% block titleBasic %}{{ 'Banner'|trans }} {{ 'creation'|trans }}{% endblock %}
+        {% block subtitleBasic %}{{ "Configure your banner"|trans }}{% endblock %}
+    {% endembed %}
+    {% embed 'templates/admin/panel.html.twig' %}
+        {% block colPanel %}col-sm-9{% endblock %}
+        {% block titlePanel %}{% endblock %}
+        {% block bodyPanel %}
+            {{ form(form) }}
 
-    {{ form(form) }}
+        {% endblock %}
+    {% endembed %}
 
-    <a href="{{ path('admin_banner_show', { 'id': entity.id }) }}"  class="btn btn-success btn-sx">{{ 'Ver'|trans }}</a>
 {% endblock %}
