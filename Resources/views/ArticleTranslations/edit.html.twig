@@ -1,27 +1,40 @@
 {% extends 'CmsBundle::layout_admin.html.twig' %}
-{% block article %}
-    <h1>{{ entity.article.title }} ({{ entity.language }})</h1>
 
-    {{ tinymce_init() }}
+{% block body %}
+    {% embed 'templates/admin/ppal_title.html.twig' %}
+        {% block titleBasic %}{{ entity.article.title }} ({{ entity.language }}){% endblock %}
+        {% block subtitleBasic %}{{ "Configure your banner"|trans }}{% endblock %}
+    {% endembed %}
+    {% embed 'templates/admin/panel.html.twig' %}
+        {% block colPanel %}col-sm-9{% endblock %}
+        {% block titlePanel %}{% endblock %}
+        {% block bodyPanel %}
 
-    {{ form_start(edit_form) }}
-    {{ form_widget(edit_form) }}
+            {{ tinymce_init() }}
 
-    <div class="top">
-        <input class="btn btn-primary btn-sm" type="submit" value="{{ 'Editar '|trans }}" />
-        <a href="{{ path('admin_article_show', { 'id' : entity.article.id }) }}" class="btn btn-success btn-sm" >
-            {{ 'Volver'|trans }}
-        </a>
-        <a href="{{ path('pageDetail', { 'slug': entity.article.slug }) }}" target="_blank" class="btn btn-warning"><i
-                    class="fa fa-book"></i>{{ 'Previsualize'|trans }}</a>
-    </div>
-    <br>
-    {{ form_end(edit_form) }}
+            {{ form_start(edit_form) }}
+            {{ form_widget(edit_form) }}
 
-    {{ form_start(delete_form) }}
-    {{ form_widget(delete_form) }}
-    <div class="top">
-        <input class="btn btn-danger btn-sm" type="submit" value="{{ 'Eliminar'|trans }}" />
-    </div>
-    {{ form_end(delete_form) }}
+            <div class="top">
+                <input class="btn btn-primary btn-sm" type="submit" value="{{ 'Editar '|trans }}"/>
+                <a href="{{ path('admin_article_show', { 'id' : entity.article.id }) }}" class="btn btn-success btn-sm">
+                    {{ 'Volver'|trans }}
+                </a>
+                <a href="{{ path('pageDetail', { 'slug': entity.article.slug }) }}" target="_blank"
+                   class="btn btn-warning"><i
+                            class="fa fa-book"></i>{{ 'Previsualize'|trans }}</a>
+            </div>
+            <br>
+            {{ form_end(edit_form) }}
+
+            {{ form_start(delete_form) }}
+            {{ form_widget(delete_form) }}
+            <div class="top">
+                <input class="btn btn-danger btn-sm" type="submit" value="{{ 'Eliminar'|trans }}"/>
+            </div>
+            {{ form_end(delete_form) }}
+
+
+        {% endblock %}
+    {% endembed %}
 {% endblock %}
