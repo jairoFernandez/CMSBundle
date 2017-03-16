@@ -2,25 +2,56 @@
 {% block banner %}
 
 {% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .page {
+            padding: 100px;
+            margin-bottom: 50px;
+        }
+
+        .article-lateral{
+            align-content: right;
+        }
+        .container-fluid {
+            background-color: black !important;
+        }
+
+        section{
+            margin-top: 100px;
+        }
+    </style>
+{% endblock %}
 {% block body %}
-    {% if article != null %}
-    <div class="col-md-6 post-title">
-        <h1>{{ article.title }}</h1>
-        <p class="author"><strong>{{ 'Category'|trans }}: {% for category in article.article.category %} {{ category }}, {% endfor %}</strong>
-            </p>
-        <p><span class="text-muted">{{ article.modifiedAt|date('d, M-Y') }} </span></p>
-        {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('admin_article-trans_edit', { 'id': article.id }) }}" class="btn btn-warning"><i class="fa fa-edit"></i> {{ 'Editar'|trans }}</a>
-            <br>
-        {% endif %}
-        {% if article.article.path != null and article.article.path != ""  %}
-            <img src="{{ asset(article.article.getWebPath) }}" class="img-responsive" style="width: 30%; margin-top: 5px; float: right" />
-        {% endif %}
+
+    <div class="section" style="margin-top: 100px;">
+        <div class="container">
+            {% if article != null %}
+            <div class="row">
+                <div class="col-md-6">
+
+                    {% if article.article.path != null and article.article.path != "" %}
+                        <img src="{{ asset(article.article.getWebPath) }}" class="img-responsive"/>
+                    {% else %}
+                        <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png">
+                    {% endif %}
+                </div>
+                <div class="col-md-6">
+                    <h1>{{ article.title|title }}</h1>
+                    <h4>{{ 'Category'|trans }}
+                        : {% for category in article.article.category %} {{ category }}, {% endfor %}</h4>
+                    <p><span class="text-muted">{{ article.modifiedAt|date('d, M-Y') }} </span></p>
+                    <p>{{ article.content|raw }}</p>
+
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('admin_article-trans_edit', { 'id': article.id }) }}" class="btn btn-warning"><i
+                                    class="fa fa-edit"></i> {{ 'Editar'|trans }}</a>
+                        <br>
+                    {% endif %}
+
+                </div>
+            </div>
+            {% endif %}
+        </div>
     </div>
-    <div class="col-md-6 col-md-offset-0 post-body">
-        <p>
-            {{ article.content|raw }}
-        </p>
-    </div>
-    {% endif %}
 {% endblock %}

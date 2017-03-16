@@ -3,6 +3,16 @@ services:
 #        class: Tucompu\CmsBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
       webpage:
-             class: Tucompu\CmsBundle\Infrastructure\WebPage
-             arguments:  ["@doctrine.orm.entity_manager","@service_container"]
-                  # session: "@session"
+           class: Tucompu\CmsBundle\Infrastructure\WebPage
+           arguments:  ["@doctrine.orm.entity_manager","@service_container"]
+              # session: "@session"
+
+      app.twig.menu_extension:
+           class: Tucompu\CmsBundle\Twig\MenuExtension
+           arguments:
+              entityManager: "@doctrine.orm.entity_manager"
+              container: "@service_container"
+              AuthorizationChecker: "@security.authorization_checker"
+              TokenStorage: "@security.token_storage"
+           tags:
+               - { name: twig.extension }

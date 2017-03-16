@@ -25,13 +25,17 @@
                 </tr>
                 <tr>
                     <th>{{ 'Article'|trans }}</th>
-                    <td><a href="{{ path('admin_article_show', { 'id': entity.article.id }) }}">{{ entity.article }}</a></td>
+                    <td>
+                        {% if entity.article != null %}
+                            <a href="{{ path('admin_article_show', { 'id': entity.article.id }) }}">{{ entity.article }}</a>
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <th>{{ 'Status'|trans }}</th>
                     <td>
                         {% if entity.isActive == true %}
-                            <i  title="Activo" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>
+                            <i title="Activo" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>
                         {% else %}
                             <span>{{ 'Inactivo'|trans }}</span>
                         {% endif %}
