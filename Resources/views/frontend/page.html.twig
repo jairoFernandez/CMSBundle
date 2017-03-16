@@ -24,11 +24,11 @@
 {% endblock %}
 {% block body %}
 
-    <div class="section" style="margin-top: 100px;">
+    <div class="section" style="margin-top: 100px; word-break: break-word;">
         <div class="container">
             {% if article != null %}
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
 
                     {% if article.article.path != null and article.article.path != "" %}
                         <img src="{{ asset(article.article.getWebPath) }}" class="img-responsive"/>
@@ -36,7 +36,7 @@
                         <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png">
                     {% endif %}
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <h1>{{ article.title|title }}</h1>
                     <h4>{{ 'Category'|trans }}
                         : {% for category in article.article.category %} {{ category }}, {% endfor %}</h4>
