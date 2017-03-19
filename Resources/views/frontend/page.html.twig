@@ -9,7 +9,6 @@
             {% if article != null %}
             <div class="row">
                 <div class="col-md-4">
-
                     {% if article.article.path != null and article.article.path != "" %}
                         <img src="{{ asset(article.article.getWebPath) }}" class="img-responsive"/>
                     {% else %}
