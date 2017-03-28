@@ -5,21 +5,28 @@ namespace Tucompu\CmsBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Menu
+ * SubMenu
  *
- * @ORM\Table(name="WEB_menu")
- * @ORM\Entity(repositoryClass="Tucompu\CmsBundle\Entity\MenuRepository")
+ * @ORM\Table(name="WEB_sub_menu")
+ * @ORM\Entity(repositoryClass="Tucompu\CmsBundle\Repository\SubMenuRepository")
  */
-class Menu
+class SubMenu
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\ManyToOne(targetEntity="Menu", inversedBy="menus")
+     */
+    private $menu;
 
     /**
      * @var string
@@ -36,29 +43,17 @@ class Menu
     private $article;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="position", type="string", length=255)
-     */
-    private $position;
-
-    /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="isActive", type="boolean")
      */
     private $isActive;
 
-    /**
-     * @var
-     * @ORM\OneToMany(targetEntity="SubMenu", mappedBy="menu")
-     */
-    private $menus;
 
     /**
      * Get id
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -70,7 +65,7 @@ class Menu
      *
      * @param string $name
      *
-     * @return Menu
+     * @return SubMenu
      */
     public function setName($name)
     {
@@ -88,37 +83,13 @@ class Menu
     {
         return $this->name;
     }
-
-    /**
-     * Set position
-     *
-     * @param string $position
-     *
-     * @return Menu
-     */
-    public function setPosition($position)
-    {
-        $this->position = $position;
-
-        return $this;
-    }
-
-    /**
-     * Get position
-     *
-     * @return string
-     */
-    public function getPosition()
-    {
-        return $this->position;
-    }
-
+    
     /**
      * Set isActive
      *
      * @param boolean $isActive
      *
-     * @return Menu
+     * @return SubMenu
      */
     public function setIsActive($isActive)
     {
@@ -130,24 +101,48 @@ class Menu
     /**
      * Get isActive
      *
-     * @return boolean
+     * @return bool
      */
     public function getIsActive()
     {
         return $this->isActive;
     }
-    
+
+    /**
+     * Set menu
+     *
+     * @param \Tucompu\CmsBundle\Entity\Menu $menu
+     *
+     * @return SubMenu
+     */
+    public function setMenu(\Tucompu\CmsBundle\Entity\Menu $menu = null)
+    {
+        $this->menu = $menu;
+
+        return $this;
+    }
+
+    /**
+     * Get menu
+     *
+     * @return \Tucompu\CmsBundle\Entity\Menu
+     */
+    public function getMenu()
+    {
+        return $this->menu;
+    }
 
     public function __toString()
     {
-        return $this->getName();
+        return $this->getMenu()."-".$this->getName();
     }
 
     /**
      * Set article
      *
      * @param \Tucompu\CmsBundle\Entity\Article $article
-     * @return Menu
+     *
+     * @return SubMenu
      */
     public function setArticle(\Tucompu\CmsBundle\Entity\Article $article = null)
     {
@@ -159,7 +154,7 @@ class Menu
     /**
      * Get article
      *
-     * @return \Tucompu\CmsBundle\Entity\Article 
+     * @return \Tucompu\CmsBundle\Entity\Article
      */
     public function getArticle()
     {

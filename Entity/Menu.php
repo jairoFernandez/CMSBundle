@@ -49,6 +49,11 @@ class Menu
      */
     private $isActive;
 
+    /**
+     * @var
+     * @ORM\OneToMany(targetEntity="SubMenu", mappedBy="menu")
+     */
+    private $menus;
 
     /**
      * Get id
@@ -159,5 +164,46 @@ class Menu
     public function getArticle()
     {
         return $this->article;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->menus = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add menu
+     *
+     * @param \Tucompu\CmsBundle\Entity\SubMenu $menu
+     *
+     * @return Menu
+     */
+    public function addMenu(\Tucompu\CmsBundle\Entity\SubMenu $menu)
+    {
+        $this->menus[] = $menu;
+
+        return $this;
+    }
+
+    /**
+     * Remove menu
+     *
+     * @param \Tucompu\CmsBundle\Entity\SubMenu $menu
+     */
+    public function removeMenu(\Tucompu\CmsBundle\Entity\SubMenu $menu)
+    {
+        $this->menus->removeElement($menu);
+    }
+
+    /**
+     * Get menus
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMenus()
+    {
+        return $this->menus;
     }
 }

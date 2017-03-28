@@ -21,7 +21,6 @@
                         : {% for category in article.article.category %} {{ category }}, {% endfor %}</h4>
                     <p><span class="text-muted">{{ article.modifiedAt|date('d, M-Y') }} </span></p>
                     <p>{{ article.content|raw }}</p>
-
                     {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{ path('admin_article-trans_edit', { 'id': article.id }) }}" class="btn btn-warning"><i
                                     class="fa fa-edit"></i> {{ 'Editar'|trans }}</a>

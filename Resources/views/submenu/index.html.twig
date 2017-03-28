@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Submenus list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Isactive</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for subMenu in subMenus %}
+            <tr>
+                <td><a href="{{ path('submenu_show', { 'id': subMenu.id }) }}">{{ subMenu.id }}</a></td>
+                <td>{{ subMenu.name }}</td>
+                <td>{% if subMenu.isActive %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('submenu_show', { 'id': subMenu.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('submenu_edit', { 'id': subMenu.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('submenu_new') }}">Create a new subMenu</a>
+        </li>
+    </ul>
+{% endblock %}

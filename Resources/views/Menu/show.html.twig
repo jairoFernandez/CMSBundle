@@ -7,7 +7,7 @@
     {% endembed %}
     {% embed 'templates/admin/panel.html.twig' %}
         {% block colPanel %}col-sm-9{% endblock %}
-        {% block titlePanel %}  {{ 'Languages'|trans }} {{ 'list'|trans }}{% endblock %}
+        {% block titlePanel %}  {{ 'Menu'|trans }}{% endblock %}
         {% block bodyPanel %}
             <table class="table table-bordered">
                 <tbody>
@@ -50,6 +50,49 @@
             <a href="{{ path('admin_menu_edit', { 'id': entity.id }) }}" class="btn btn-success">
                 {{ 'Editar'|trans }}
             </a>
+        {% endblock %}
+    {% endembed %}
+
+    {% embed 'templates/admin/panel.html.twig' %}
+        {% block colPanel %}col-sm-9{% endblock %}
+        {% block titlePanel %}  {{ 'Sub Menu'|trans }}{% endblock %}
+        {% block bodyPanel %}
+            <a href="{{ path('submenu_new') }}" class="btn btn-info">
+                {{ 'Create'|trans }}
+            </a>
+            <hr>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>{{ 'Name'|trans }}</th>
+                    <th>{{ 'Link'|trans }}</th>
+                    <th>{{ 'Status'|trans }}</th>
+                    <th>{{ 'Actions'|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for menu in entity.menus %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ menu.name }}</td>
+                        <td>{% if menu.isActive == true %}
+                                <i  title="Activo" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>
+                            {% else %}
+                                <span>{{ 'Inactivo'|trans }}</span>
+                            {% endif %}</td>
+                        <td>
+                            {% if menu.article != null %}
+                                <a href="{{ path('admin_article_show', { 'id': menu.article.id }) }}">{{ menu.article }}</a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{{ path('submenu_edit', { 'id': menu.id }) }}"  class="btn btn-success btn-sx">{{ 'Editar'|trans }}</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         {% endblock %}
     {% endembed %}
 {% endblock %}
